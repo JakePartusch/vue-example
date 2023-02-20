@@ -20,6 +20,6 @@ jobs:
       - name: Deploy UI
         uses: JakePartusch/notlify-action@main
         with:
-          applicationName: cra-example
+          applicationName: vue-example
           distributionDirectory: dist
           apiKey: ${{ secrets.NOTLIFY_API_KEY }}
