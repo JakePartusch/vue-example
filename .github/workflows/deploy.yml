@@ -1,0 +1,25 @@
+name: "Deploy"
+on:
+  push:
+    branches:
+      - "main"
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+      - name: Install UI
+        run: npm ci
+      - name: Build UI
+        run: npm run build
+      - name: Deploy UI
+        uses: JakePartusch/notlify-action@main
+        with:
+          applicationName: cra-example
+          distributionDirectory: dist
+          apiKey: ${{ secrets.NOTLIFY_API_KEY }}
